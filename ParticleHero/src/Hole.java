@@ -10,7 +10,7 @@ public class Hole {
 		strength = strengthIn;
 	}
 	
-	public void update(Agents agents, float dt) {
+	public void update(State state, float dt) {
 
 		position = Vec2dMath.add(position, Vec2dMath.scale(dt, velocity));
 	}

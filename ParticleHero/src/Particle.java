@@ -11,42 +11,37 @@ public class Particle {
 		rgb = WavelengthToRGB.convert(wavelength);
 	}
 	
-	public void update(Agents agents, float dt) {
+	public void update(State state, float dt) {
 		Vector2d updateVelocity = new Vector2d(velocity);
 		Vector2d force = new Vector2d();
 		float velocityMagnitude = Vec2dMath.magnitude(velocity);
 		
 		
 		/**************************************** Mousey Things ****************************************/
-		if (agents.mouseMode == 2) {
-			Vector2d difference = Vec2dMath.add(agents.mouseHole.position, Vec2dMath.scale(-1, position));
+		if (state.mouseMode == 2) {
+			Vector2d difference = Vec2dMath.add(state.mouseHole.position, Vec2dMath.scale(-1, position));
 			force = Vec2dMath.add(force,Vec2dMath.scale(1000, Vec2dMath.unit(difference)));
 		}
 		/***********************************************************************************************/
-
-		
 		
 		
 		
 		/**************************************** Electric Field ****************************************/
-		for (int i=0;i<agents.eFieldList.length;i++) {
-			if (agents.eFieldList[i].isInField(position)) {
-				//force = Vec2dMath.add(force,Vec2dMath.scale((-1*agents.eFieldList[i].strength*(Vec2dMath.magnitude(velocity)*Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
-				force = Vec2dMath.add(force,Vec2dMath.scale((100*agents.eFieldList[i].strength*(Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
+		for (int i=0;i<state.eFieldList.length;i++) {
+			if (state.eFieldList[i].isInField(position)) {
+				//force = Vec2dMath.add(force,Vec2dMath.scale((-1*state.eFieldList[i].strength*(Vec2dMath.magnitude(velocity)*Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
+				force = Vec2dMath.add(force,Vec2dMath.scale((100*state.eFieldList[i].strength*(Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
 			}
 		}
 		/************************************************************************************************/
-		
-		
-		
-		
+			
 		
 		
 		/**************************************** Magnetic Field ****************************************/
 		Vector2d tempF = new Vector2d();
-		for (int i=0;i<agents.bFieldList.length;i++) {
-			if (agents.bFieldList[i].isInField(position)) {
-				tempF = Vec2dMath.add(tempF,Vec2dMath.hackedCrossProduct(velocity, agents.bFieldList[i].strength));	
+		for (int i=0;i<state.bFieldList.length;i++) {
+			if (state.bFieldList[i].isInField(position)) {
+				tempF = Vec2dMath.add(tempF,Vec2dMath.hackedCrossProduct(velocity, state.bFieldList[i].strength));	
 			}
 		}
 		Vector2d tempV = Vec2dMath.scale(velocityMagnitude, Vec2dMath.unit(Vec2dMath.add(velocity, Vec2dMath.scale(dt,tempF))));
@@ -55,33 +50,25 @@ public class Particle {
 		
 		
 		
-		
-		
 		/**************************************** Drag Field ****************************************/
-		for (int i=0;i<agents.rFieldList.length;i++) {
-			if (agents.rFieldList[i].isInField(position)) {
-				//force = Vec2dMath.add(force,Vec2dMath.scale((-1*agents.rFieldList[i].strength*(Vec2dMath.magnitude(velocity)*Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
-				force = Vec2dMath.add(force,Vec2dMath.scale((-100*agents.rFieldList[i].strength*(Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
+		for (int i=0;i<state.rFieldList.length;i++) {
+			if (state.rFieldList[i].isInField(position)) {
+				//force = Vec2dMath.add(force,Vec2dMath.scale((-1*state.rFieldList[i].strength*(Vec2dMath.magnitude(velocity)*Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
+				force = Vec2dMath.add(force,Vec2dMath.scale((-100*state.rFieldList[i].strength*(Vec2dMath.magnitude(velocity))),Vec2dMath.unit(velocity)));
 			}
 		}
 		/********************************************************************************************/
 		
 		
 		
-		
-		
-		
-		
 		/**************************************** Gravity Points ****************************************/
-		for (int i=0;i<agents.holeList.length;i++) {
-			Vector2d difference = Vec2dMath.add(agents.holeList[i].position, Vec2dMath.scale(-1, position));
+		for (int i=0;i<state.holeList.length;i++) {
+			Vector2d difference = Vec2dMath.add(state.holeList[i].position, Vec2dMath.scale(-1, position));
 			float distance = Vec2dMath.magnitude(difference);
 			if (distance>0)
-				force = Vec2dMath.add(force, Vec2dMath.scale((agents.holeList[i].strength/(distance)),difference));
+				force = Vec2dMath.add(force, Vec2dMath.scale((state.holeList[i].strength/(distance)),difference));
 		}
 		/************************************************************************************************/
-		
-		
 		
 		
 		

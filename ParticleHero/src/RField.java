@@ -10,7 +10,7 @@ public class RField {
 		strength = strengthIn;
 	}
 	
-	public void update(Agents agents, Vector2d newPosition,float strengthIn) {
+	public void update(State state, Vector2d newPosition,float strengthIn) {
 		position = newPosition;
 		strength = strengthIn;
 	}

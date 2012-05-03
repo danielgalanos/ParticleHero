@@ -1,5 +1,5 @@
 
-public class Agents {
+public class State {
 	boolean mouseLeftClickDown;
 	Vector2d mouseLeftClickDownCoord1;
 	Vector2d mouseLeftClickDownCoord2;
@@ -17,7 +17,7 @@ public class Agents {
 	EField[] eFieldList;
 	
 	
-	public Agents() {
+	public State() {
 		player = new Player();
 		mouseMode = 1;
 		mouseHole = new MouseHole(new Vector2d());
