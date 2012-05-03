@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		Random randy = new Random();
 		int height = 1000;
-		int width = 1200;
+		int width = 1201;
 		//int height = 1080;
 		//int width = 1920;
 		

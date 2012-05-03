@@ -103,11 +103,11 @@ public class Player {
 			Vector2d mousePos = new Vector2d(container.getInput().getAbsoluteMouseX(), container.getInput().getAbsoluteMouseY());
 			Vector2d velocityCalc = Vec2dMath.scale(100,Vec2dMath.unit(Vec2dMath.add(mousePos, Vec2dMath.scale(-1, position))));
 			agents.ParticleList = ArrayOperations.append(agents.ParticleList, new Particle(new Vector2d(position),velocityCalc));
-			/*agents.ParticleList = ArrayOperations.append(agents.ParticleList, new Particle(new Vector2d(position),Vec2dMath.rotate(velocityCalc, (float)Math.PI/6f)));
+			agents.ParticleList = ArrayOperations.append(agents.ParticleList, new Particle(new Vector2d(position),Vec2dMath.rotate(velocityCalc, (float)Math.PI/6f)));
 			agents.ParticleList = ArrayOperations.append(agents.ParticleList, new Particle(new Vector2d(position),Vec2dMath.rotate(velocityCalc, (float)-Math.PI/6f)));
 			agents.ParticleList = ArrayOperations.append(agents.ParticleList, new Particle(new Vector2d(position),Vec2dMath.rotate(velocityCalc, (float)Math.PI/3f)));
 			agents.ParticleList = ArrayOperations.append(agents.ParticleList, new Particle(new Vector2d(position),Vec2dMath.rotate(velocityCalc, (float)-Math.PI/3f)));
-			*/
+			
 		}
 		
 		/*

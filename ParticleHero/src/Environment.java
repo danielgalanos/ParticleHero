@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.AppGameContainer;
 
 public class Environment extends BasicGame {
+	//HII GITFACE
 	String mymessage = "HIU";
 	int counter = 0;
 	
@@ -85,11 +86,11 @@ public class Environment extends BasicGame {
 
 		
 		// draws rainbow line! woo
-		/*
+		
 		for (float lambda = 730;lambda>=400;lambda-=1) {
 			g.setColor(new Color(WavelengthToRGB.convert(lambda)[0],WavelengthToRGB.convert(lambda)[1],WavelengthToRGB.convert(lambda)[2]));
 			g.drawRect(lambda, 300, 2, 2);
-		}*/
+		}
 
 		
 		
