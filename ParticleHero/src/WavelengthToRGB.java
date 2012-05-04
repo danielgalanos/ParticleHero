@@ -2,10 +2,24 @@
 public class WavelengthToRGB {
 
 	public static int[] convert(float wavelength) {
-		float red,green,blue;
+		double red,green,blue;
 		red=0;
 		green=0;
 		blue=0;
+
+    //Purple color scheme - Meghan
+
+      double milli_wave = wavelength/1000;
+      double redshift = milli_wave - 0.4;
+		double greenshift = milli_wave - 0.75;
+		double blueshift = milli_wave - 0.6;
+
+		red = 10*-(Math.pow(redshift, 2.0)) + 1;
+		green = 50*-(Math.pow(greenshift, 2.0)) + 1;
+		blue = 35*-(Math.pow(blueshift, 2.0)) + 1;
+
+
+/* //RGB Color Scheme
 
 		if (wavelength<730f && wavelength >= 670f) {
 			red = (730f-wavelength)/(730f-670f);
@@ -50,7 +64,7 @@ public class WavelengthToRGB {
 			}
 		}
 		
-		
+*/
 
 		return new int[] {(int)(red*255),(int)(green*255),(int)(blue*255)};
 	}
