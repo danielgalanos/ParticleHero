@@ -74,7 +74,7 @@ public class Environment extends BasicGame {
 		
 		
 		if (counter%60==0) {
-			System.out.println(state.ParticleList.length);
+			//System.out.println(state.ParticleList.length);
 		}
 		counter++;
 	}
